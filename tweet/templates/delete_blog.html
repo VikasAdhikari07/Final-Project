@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block title %}
+index
+{% endblock title %}
+
+{% block content %}
+<h2 class="text-left text-white mt-4 mx-10 p-3">Are you sure that you want to delte the blog?</h2>
+<form class = "mx-10 mt-3 p-3" method="POST">
+    {% csrf_token %}
+    <button class="btn btn-danger mx-10 ">Delete</button>
+    <a class = "btn btn-success" href="{% url "blog_list" %}">Go Back to Blogs</a>
+</form>
+{% endblock %}

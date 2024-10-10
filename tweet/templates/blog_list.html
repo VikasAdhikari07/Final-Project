@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+index
+{% endblock title %}
+
+{% block content %}
+<h1 class="text-center text-white mt-4">These are the thoughts on thoughts</h1>
+
+<a class="btn btn-primary mt-3 m-4" href="{% url "blog_create" %}">Write a Blog</a>
+
+
+<div class="container">
+  <div class="row">
+      {% for blog in blogs %}
+      <div class="col-md-4 mb-4">
+          <div class="card h-100" style="width: 100%;">
+              <img src="{{blog.photo.url}}" class="card-img-top" alt="...">
+              <div class="card-body">
+                  <h5 class="card-title">{{blog.heading}}</h5>
+                  <p class="card-text">By {{blog.user.username}}</p>
+                  <a href="{% url 'blog_view' blog.id %}">View full article here</a>
+                  <br>
+                  {% if blog.user == user %}
+                  <a href="{% url 'blog_edit' blog.id %}" class="btn btn-primary">Edit</a>
+                  <a href="{% url 'blog_delete' blog.id %}" class="btn btn-danger">Delete</a>
+                  {% endif %}
+              </div>
+          </div>
+      </div>
+      {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

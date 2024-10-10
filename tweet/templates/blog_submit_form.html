@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}
+index
+{% endblock title %}
+
+{% block content %}
+{% comment %} <h1 class="text-center text-white mt-4">Thoughts</h1> {% endcomment %}
+
+{% if form.instance.pk %}
+<h1 class="text-left text-white mt-4">Edit your blog here</h1>
+{% else %}
+<h1 class="text-left text-white mt-4">Create a blog here</h1>
+{% endif %}
+
+<form method="POST" enctype="multipart/form-data" class ="form">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button class="btn btn-warning" type="submit">Submit</button>
+</form>
+
+{% endblock %}
